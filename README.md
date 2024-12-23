@@ -41,6 +41,8 @@ launch backend  :
 yarn dev:back
 ```
 
+Swagger available on http://localhost:3000/api
+
 ### launch packages front
 launch front  :
 
@@ -53,7 +55,6 @@ To run unit test, use this command :
 ```bash
 yarn test
 ```
-
 
 
 ## Contribute to the projet
