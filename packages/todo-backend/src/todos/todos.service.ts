@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Todo, TodoDocument } from './schemas/todo.schema';
 import { maptoDto } from './todos.mapper';
 import { TodoDto } from './dto/todo.dto';
+import { TodoException } from './todo-exception';
 
 @Injectable()
 export class TodosService {
@@ -20,7 +21,11 @@ export class TodosService {
   }
 
   async findOne(id: string): Promise<TodoDto> {
-    return maptoDto(await this.todoModel.findById(id).exec());
+    const result = await this.todoModel.findById(id).exec()
+    if (result){
+      return maptoDto(result);
+    }
+    throw new TodoException({error:'Todo not found',status:HttpStatus.NOT_FOUND})
   }
 
   async update(id: string, todo: Todo): Promise<TodoDto> {
