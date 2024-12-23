@@ -1,0 +1,19 @@
+{
+  "name": "todo-monorepo",
+  "version": "1.0.0",
+  "description": "todo list monorepo",
+  "main": "index.js",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "dev:back": "yarn workspace todo-backend run dev",
+    "dev:front": "yarn workspace todo-frontend run dev",
+    "test": "yarn workspaces run test"
+  },
+  "author": "Sébastien Morel",
+  "license": "ISC"
+}
